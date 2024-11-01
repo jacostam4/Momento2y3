@@ -1,4 +1,3 @@
-// Canal Call Center
 if(ChannelTypeCd == '5'){
     def token = GenerarToken()
     def fechaFormateada = Formatear_Fecha(CreationDate)
@@ -10,8 +9,8 @@ if(ChannelTypeCd == '5'){
     def groovyMap = [
             codigo_queja: dl_sr_tipo_entidad_c+dl_sr_entidad_cod_c+SrNumber,
             sexo: 1, // tiene como homologar
-            lgbtiq: dl_co_LGTBQ_c.toInteger(), // tiene como homologar
-            condicion_especial: dl_sr_condicion_especial.toInteger(), // tiene como homologar
+            lgbtiq: ContactPerson?.dl_co_LGTBQ_c.toInteger(), // tiene como homologar
+            condicion_especial: dl_sr_condicion_especial_c.toInteger(), // tiene como homologar
             canal_cod: ChannelTypeCd.toInteger(),
             producto_cod: ProductVO?.ItemNumber.toInteger(),
             macro_motivo_cod: valfin,
