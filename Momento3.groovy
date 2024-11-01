@@ -2,7 +2,8 @@
 if(ChannelTypeCd == '5'){
     def token = GenerarToken()
     def fechaFormateada = Formatear_Fecha(CreationDate)
-
+    def valor = nvl(getSelectedListDisplayValue('CategoryId'),"")
+    def valfin = valor.length() >= 3 ? valor.substring(0, 3) : valor
     // Define el map que se va a enviar
 
 
@@ -13,7 +14,7 @@ if(ChannelTypeCd == '5'){
             condicion_especial: dl_sr_condicion_especial.toInteger(), // tiene como homologar
             canal_cod: ChannelTypeCd.toInteger(),
             producto_cod: ProductVO?.ItemNumber.toInteger(),
-            macro_motivo_cod: 120,
+            macro_motivo_cod: valfin,
             estado_cod: 2,
             fecha_actualizacion: fechaFormateada,
             producto_digital: dl_sr_producto_digital_c.toInteger(), // no encuentro sus valores

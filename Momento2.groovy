@@ -2,7 +2,8 @@
 if(ChannelTypeCd == '5'){  
   def token = GenerarToken()
   def fechaFormateada = Formatear_Fecha(CreationDate)
-  
+  def valor = nvl(getSelectedListDisplayValue('CategoryId'),"")
+  def valfin = valor.length() >= 3 ? valor.substring(0, 3) : valor
   // Define el map que se va a enviar
   def groovyMap = [
     tipo_entidad: dl_sr_tipo_entidad_c.toInteger(),
@@ -14,7 +15,7 @@ if(ChannelTypeCd == '5'){
     canal_cod: ChannelTypeCd.toInteger(),
     producto_cod: ProductVO?.ItemNumber.toInteger(),
     producto_nombre: ProductVO?.Name,
-    macro_motivo_cod: 120,
+    macro_motivo_cod: valfin.toInteger(),
     fecha_creacion: fechaFormateada,
     nombres: ContactPerson?.PartyUniqueName,
     tipo_id_CF: HomologacioTipoDoc(ContactPerson?.dl_tipo_identificacion_c),
